@@ -5,44 +5,14 @@ const PATTERNS_COUNT = 3;
 const RUN_TIMES = 10;
 
 const BUILDS = [
-    'C PCRE2'      => 'gcc -O3 -DNDEBUG c/benchmark.c -I/usr/local/include/ -lpcre2-8 -o c/bin/benchmark',
-    'Crystal'      => 'crystal build crystal/benchmark.cr --release -o crystal/bin/benchmark',
-    'C++ - STL'    => 'g++ -std=c++11 -O3 cpp/benchmark.cpp -DREGEX_NAMESPACE=std -lboost_regex -o cpp/bin/benchmark-stl',
-    'C++ - Boost'  => 'g++ -std=c++11 -O3 cpp/benchmark.cpp -DREGEX_NAMESPACE=boost -lboost_regex -o cpp/bin/benchmark-boost',
-    'C# Mono'      => 'mcs csharp/Benchmark.cs -out:csharp/bin-mono/benchmark.exe -debug- -optimize',
-    'C# .Net Core' => 'dotnet build csharp/benchmark.csproj -c Release',
-    'D dmd'        => 'dmd -O -release -inline -of=d/bin/benchmark d/benchmark.d',
-    'D ldc'        => 'ldc2 -O3 -release -of=d/bin/benchmark-ldc d/benchmark.d',
-    'Dart Native'  => 'dart2native dart/benchmark.dart -o dart/bin/benchmark',
-    'Go'           => 'go build -ldflags "-s -w" -o go/bin/benchmark ./go',
-    'Java'         => 'javac java/Benchmark.java',
-    'Kotlin'       => 'kotlinc kotlin/benchmark.kt -include-runtime -d kotlin/benchmark.jar',
-    'Rust'         => 'cargo build --quiet --release --manifest-path=rust/Cargo.toml',
+   'C# .Net Core 50' => 'dotnet-sdk.dotnet build csharp/benchmark.csproj -c Release',
+ 
 ];
 
 const COMMANDS = [
-    'C PCRE2'      => 'c/bin/benchmark',
-    'Crystal'      => 'crystal/bin/benchmark',
-    'C++ STL'      => 'cpp/bin/benchmark-stl',
-    'C++ Boost'    => 'cpp/bin/benchmark-boost',
-    'C# Mono'      => 'mono -O=all csharp/bin-mono/benchmark.exe',
-    'C# .Net Core' => 'dotnet csharp/bin/Release/netcoreapp3.0/benchmark.dll',
-    'D dmd'        => 'd/bin/benchmark',
-    'D ldc'        => 'd/bin/benchmark-ldc',
-    'Dart'         => 'dart dart/benchmark.dart',
-    'Dart Native'  => 'dart/bin/benchmark',
-    'Go'           => 'go/bin/benchmark',
-    'Java'         => 'java -XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC -classpath java Benchmark',
-    'Javascript'   => 'node javascript/benchmark.js',
-    'Kotlin'       => 'kotlin kotlin/benchmark.jar',
-    'Perl'         => 'perl perl/benchmark.pl',
-    'PHP'          => 'php php/benchmark.php',
-    'Python 2'     => 'python2.7 python/benchmark.py',
-    'Python 3'     => 'python3.6 python/benchmark.py',
-    'Python PyPy2' => 'pypy2 python/benchmark.py',
-    'Python PyPy3' => 'pypy3 python/benchmark.py',
-    'Ruby'         => 'ruby ruby/benchmark.rb',
-    'Rust'         => 'rust/target/release/benchmark',
+   
+    'C# .Net Core 50' => 'dotnet-sdk.dotnet csharp/bin/Release/netcoreapp5.0/benchmark.dll',
+   
 ];
 
 echo '- Build' . PHP_EOL;
@@ -73,7 +43,7 @@ foreach (COMMANDS as $language => $command) {
         for ($j = 0; $j < PATTERNS_COUNT; $j++) {
             $currentResults[$j][] = $matches[0][$j];
         }
-
+        echo $out;
         echo '.';
     }
 
